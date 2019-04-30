@@ -53,6 +53,9 @@ async function PutMember() {
     const r = await request('PUT',ContextRoot,'{"id":1,"surname":"Curie","name":"Marie2"}');
 }
 
+function DeleteMember(id) {
+    request('DELETE',ContextRoot.concat("/").concat(id));
+}
 
 async function GetAllMembers() {
     const r = await request('GET',ContextRoot);
@@ -70,7 +73,7 @@ async function GetAllMembers() {
             butt.style = "float: right;";
             butt.value = as[i].id;
             butt.addEventListener ("click", function() {
-                alert("did something with " + this.value);
+                DeleteMember(this.value);
             });
             row.appendChild(butt);
 
