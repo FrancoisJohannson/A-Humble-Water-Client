@@ -45,13 +45,14 @@ function createRequest() {
     return xhttp;
 }
 
-
+/*
 function Get(uri) {
     var xhttp = createRequest();
     xhttp.open("GET", uri, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send();  
 }
+*/
 
 // POST is for insterting a new element
 function PostMember() {
@@ -83,7 +84,8 @@ async function GetAllMembers() {
     }
 }
 
-function GetMember() {
-    Get(ContextRoot.concat("/1"));
+async function GetMember() {
+    const r = await request(ContextRoot.concat("/1"));
+    //Get(ContextRoot.concat("/1"));
 
 }
