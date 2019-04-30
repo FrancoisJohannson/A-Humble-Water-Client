@@ -1,6 +1,6 @@
 "use strict";
 
-var ContextRoot = "http://localhost:8080/members";
+const ContextRoot = "http://localhost:8080/members";
 
 
 function request(verb,url,body) {
@@ -37,7 +37,7 @@ function request(verb,url,body) {
 
 
  function removeElementsByClass(className) {
-    var elements = document.getElementsByClassName(className);
+    let elements = document.getElementsByClassName(className);
     while(elements.length > 0){
         elements[0].parentNode.removeChild(elements[0]);
     }
@@ -56,16 +56,16 @@ async function PutMember() {
 
 async function GetAllMembers() {
     const r = await request('GET',ContextRoot);
-    var as = JSON.parse(r);
+    let as = JSON.parse(r);
 
     removeElementsByClass("itemline");
-    for (var i = 0; i < as.length; i++) {
-        var row = document.createElement('p');
+    for (let i = 0; i < as.length; i++) {
+        let row = document.createElement('p');
             row.classList.add("itemline");
             row.style.border = '1px solid lightblue';
             row.innerText = as[i].id+" "+as[i].name+" "+as[i].surname;
 
-            var butt = document.createElement('button');
+            let butt = document.createElement('button');
             butt.innerHTML = "Del";
             butt.style = "float: right;";
             butt.value = as[i].id;
