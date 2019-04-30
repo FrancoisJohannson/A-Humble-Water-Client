@@ -9,19 +9,22 @@ function request(url) {
       xhr.onreadystatechange = function(e) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            resolve(xhr.responseText)
+            resolve(xhr.responseText);
+            document.getElementById("p1").innerHTML = "status:"+xhr.status+" ,response="+xhr.responseText;
           } else {
-            reject(xhr.status)
+            reject(xhr.status);
+            //document.getElementById("p1").innerHTML = "status:"+xhr.status;
+            document.getElementById("p1").innerHTML = "status:"+xhr.status+" ,response="+xhr.responseText;
           }
-          document.getElementById("p1").innerHTML = "status:"+xhr.status;
+          
         }
       }
       xhr.ontimeout = function () {
-        reject('timeout')
+        reject('timeout');
       }
-      xhr.open('GET', url, true)
+      xhr.open('GET', url, true);
       xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.send()
+      xhr.send();
     })
   }
 
@@ -35,7 +38,7 @@ function createRequest() {
             // Typical action to be performed when the document is ready:
             var response = xhttp.responseText;            
             }
-            document.getElementById("p1").innerHTML = "status:"+this.status;
+            document.getElementById("p1").innerHTML = "status:"+this.status+" ,response="+xhttp.responseText;
         }
     };
 
