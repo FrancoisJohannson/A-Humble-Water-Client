@@ -1,5 +1,6 @@
 "use strict";
 
+var ContextRoot = "http://localhost:8080/members";
 
 function createRequest() {
     var xhttp = new XMLHttpRequest();
@@ -25,18 +26,28 @@ function Get(uri) {
     xhttp.send();  
 }
 
+// POST is for insterting a new element
 function PostMember() {
     var xhttp = createRequest();
-    xhttp.open("POST", "http://localhost:8080/members", true);
+    xhttp.open("POST", ContextRoot, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send('{"id":6,"surname":"Gulbrannson","name":"Olaf"}');  
+    xhttp.send('{"id":7,"surname":"Merkel","name":"Angela"}');  
 }
 
+// PUT is for changeing an element
+function PutMember() {
+    var xhttp = createRequest();
+    xhttp.open("PUT", ContextRoot, true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send('{"id":1,"surname":"Curie","name":"Marie"}');  
+}
+
+
 function GetAllMembers() {
-    Get("http://localhost:8080/members");
+    Get(ContextRoot);
 }
 
 function GetMember() {
-    Get("http://localhost:8080/members/1");
+    Get(ContextRoot.concat("/1"));
 
 }
