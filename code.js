@@ -10,8 +10,17 @@ function createRequest() {
         if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
             var response = xhttp.responseText;
-            console.log("ok"+response);
-            //alert("response:"+response);
+            
+            var as = JSON.parse(response);
+
+            for (var i = 0; i < as.length; i++) {
+                var row = document.createElement('p');
+                row.style.border = '1px solid black';
+                row.innerText = as[i].id+" "+as[i].name+" "+as[i].surname;
+                document.body.appendChild(row);
+
+            }
+
             document.getElementById("p1").innerHTML = "response:"+response;
         }
     };
