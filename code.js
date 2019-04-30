@@ -64,6 +64,15 @@ async function GetAllMembers() {
             row.classList.add("itemline");
             row.style.border = '1px solid lightblue';
             row.innerText = as[i].id+" "+as[i].name+" "+as[i].surname;
+
+            var butt = document.createElement('button');
+            butt.innerHTML = "Del";
+            butt.style = "float: right;";
+            butt.addEventListener ("click", function() {
+                alert("did something");
+            });
+            row.appendChild(butt);
+
             document.body.appendChild(row);
     }
 }
