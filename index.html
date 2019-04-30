@@ -5,8 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>A Humble Rest Client</title>
+
+    <script type="text/javascript" language="javascript">
+        function UserAction() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert(this.responseText);
+                }
+            };
+            xhttp.open("POST", "Your Rest URL Here", true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send("Your JSON Data Here");
+        }
+    </script>
+
 </head>
 <body>
     <h1>A Humble Rest Server</h1>
+    <button type="submit" onclick="UserAction()">A Button to press</button>
 </body>
 </html>
