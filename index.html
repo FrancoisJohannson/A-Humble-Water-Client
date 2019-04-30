@@ -8,15 +8,20 @@
 
     <script type="text/javascript" language="javascript">
         function UserAction() {
+
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
+                console.log("readyState:"+this.readyState);
+                console.log("status:"+this.status);
                 if (this.readyState == 4 && this.status == 200) {
-                    alert(this.responseText);
+                    // Typical action to be performed when the document is ready:
+                    var response = xhttp.responseText;
+                    console.log("ok"+response);
                 }
             };
-            xhttp.open("POST", "Your Rest URL Here", true);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send("Your JSON Data Here");
+            xhttp.open("GET", "http://localhost:8080/members/1", true);
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            xhttp.send();
         }
     </script>
 
