@@ -11,7 +11,8 @@ function createRequest() {
             // Typical action to be performed when the document is ready:
             var response = xhttp.responseText;
             console.log("ok"+response);
-            alert("response:"+response);
+            //alert("response:"+response);
+            document.getElementById("p1").innerHTML = "response:"+response;
         }
     };
 
