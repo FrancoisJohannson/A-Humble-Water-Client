@@ -68,8 +68,9 @@ async function GetAllMembers() {
             var butt = document.createElement('button');
             butt.innerHTML = "Del";
             butt.style = "float: right;";
+            butt.value = as[i].id;
             butt.addEventListener ("click", function() {
-                alert("did something");
+                alert("did something with " + this.value);
             });
             row.appendChild(butt);
 
