@@ -2,26 +2,40 @@
 
 var ContextRoot = "http://localhost:8080/members";
 
+
+function request(url) {
+    return new Promise(function(resolve, reject) {
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            resolve(xhr.responseText)
+          } else {
+            reject(xhr.status)
+          }
+          document.getElementById("p1").innerHTML = "status:"+xhr.status;
+        }
+      }
+      xhr.ontimeout = function () {
+        reject('timeout')
+      }
+      xhr.open('GET', url, true)
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send()
+    })
+  }
+
+
 function createRequest() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        console.log("readyState:"+this.readyState);
-        console.log("status:"+this.status);
-        if (this.readyState == 4 && this.status == 200) {
+        
+        if (this.readyState == 4 ) {
+            if ( this.status == 200) {
             // Typical action to be performed when the document is ready:
-            var response = xhttp.responseText;
-            
-            var as = JSON.parse(response);
-
-            for (var i = 0; i < as.length; i++) {
-                var row = document.createElement('p');
-                row.style.border = '1px solid black';
-                row.innerText = as[i].id+" "+as[i].name+" "+as[i].surname;
-                document.body.appendChild(row);
-
+            var response = xhttp.responseText;            
             }
-
-            document.getElementById("p1").innerHTML = "response:"+response;
+            document.getElementById("p1").innerHTML = "status:"+this.status;
         }
     };
 
@@ -53,8 +67,17 @@ function PutMember() {
 }
 
 
-function GetAllMembers() {
-    Get(ContextRoot);
+async function GetAllMembers() {
+    //Get(ContextRoot);
+    const r = await request(ContextRoot);
+    var as = JSON.parse(r);
+
+    for (var i = 0; i < as.length; i++) {
+        var row = document.createElement('p');
+            row.style.border = '1px solid lightblue';
+            row.innerText = as[i].id+" "+as[i].name+" "+as[i].surname;
+            document.body.appendChild(row);
+    }
 }
 
 function GetMember() {
