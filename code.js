@@ -36,6 +36,13 @@ function request(verb,url,body) {
   }
 
 
+ function removeElementsByClass(className) {
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+
 // POST is for insterting a new element
 async function PostMember() {
     const r = await request('POST',ContextRoot,'{"id":8,"surname":"Turner","name":"Tina"}');
@@ -51,8 +58,10 @@ async function GetAllMembers() {
     const r = await request('GET',ContextRoot);
     var as = JSON.parse(r);
 
+    removeElementsByClass("itemline");
     for (var i = 0; i < as.length; i++) {
         var row = document.createElement('p');
+            row.classList.add("itemline");
             row.style.border = '1px solid lightblue';
             row.innerText = as[i].id+" "+as[i].name+" "+as[i].surname;
             document.body.appendChild(row);
