@@ -55,7 +55,7 @@ function getMaxId(as) {
 }
 
 // POST is for insterting a new element
-async function PostMember() {
+async function PostOne() {
     let r = await request('GET',ContextRoot);
     let as = JSON.parse(r);
     let id = getMaxId(as)+1;
@@ -66,21 +66,21 @@ async function PostMember() {
     let sjson = '{"id":'+id+',"english":"'+english+'","hanzi":"'+hanzi+'"}';
 
     request('POST',ContextRoot,sjson);
-    GetAllMembers();
+    GetAll();
 }
 
 // PUT is for changeing an element
-function PutMember() {
+function PutOne() {
     let sjson = '{"id":1,"english":"Curie","hanzi":"Marie2"}';
     request('PUT',ContextRoot,sjson);
 }
 
-function DeleteMember(id) {
+function DeleteOne(id) {
     request('DELETE',ContextRoot.concat("/").concat(id));
-    GetAllMembers();
+    GetAll();
 }
 
-async function GetAllMembers() {
+async function GetAll() {
     let r = await request('GET',ContextRoot);
     let as = JSON.parse(r);
 
@@ -104,6 +104,6 @@ async function GetAllMembers() {
     }
 }
 
-async function GetMember() {
+async function GetOne() {
     const r = await request('GET',ContextRoot.concat("/1"));
 }
