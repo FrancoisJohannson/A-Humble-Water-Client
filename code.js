@@ -2,6 +2,7 @@
 
 const ContextRoot = "http://localhost:8080/chinesewords";
 
+let tmpid = undefined;
 
 function request(verb,url,body) {
     return new Promise(function(resolve, reject) {
@@ -77,14 +78,20 @@ async function CopyOne(id) {
         if ( as[i].id==id ) {
             document.getElementById("hanzi").value = as[i].hanzi;
             document.getElementById("english").value = as[i].english;
+            tmpid = id;
         }
     }
 
 }
 
 // PUT is for changeing an element
-function PutOne(id) {
-    let sjson = '{"id":1,"english":"Curie","hanzi":"Marie2"}';
+function PutOne() {
+    let id = tmpid;
+    let hanzi = document.getElementById("hanzi").value;
+    let english = document.getElementById("english").value;
+
+    let sjson = '{"id":'+id+',"english":"'+english+'","hanzi":"'+hanzi+'"}';
+
     request('PUT',ContextRoot,sjson);
 }
 
