@@ -43,14 +43,32 @@ function request(verb,url,body) {
     }
 }
 
+
+function getMaxId(as) {
+    let maxid = 1;
+    for (let i = 0; i < as.length; i++) {
+        if (as[i].id > maxid) {
+            maxid = as[i].id;
+        }
+    }
+    return maxid;
+}
+
 // POST is for insterting a new element
 async function PostMember() {
-    const r = await request('POST',ContextRoot,'{"id":8,"surname":"Turner","name":"Tina"}');
+    let r = await request('GET',ContextRoot);
+    let as = JSON.parse(r);
+    let id = getMaxId(as)+1;
+
+    let sjson = '{"id":'+id+',"surname":"Gebühr","name":"Otto"}';
+
+    request('POST',ContextRoot,sjson);
 }
 
 // PUT is for changeing an element
-async function PutMember() {
-    const r = await request('PUT',ContextRoot,'{"id":1,"surname":"Curie","name":"Marie2"}');
+function PutMember() {
+    let sjson = '{"id":1,"surname":"Curie","name":"Marie2"}';
+    request('PUT',ContextRoot,sjson);
 }
 
 function DeleteMember(id) {
@@ -58,7 +76,7 @@ function DeleteMember(id) {
 }
 
 async function GetAllMembers() {
-    const r = await request('GET',ContextRoot);
+    let r = await request('GET',ContextRoot);
     let as = JSON.parse(r);
 
     removeElementsByClass("itemline");

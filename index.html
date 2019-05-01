@@ -16,7 +16,24 @@
 
     <button type="submit" onclick="GetMember()">GET Member</button>
     <button type="submit" onclick="GetAllMembers()">GET All Members</button>
-    <button type="submit" onclick="PostMember()">POST(Add) Member</button>
     <button type="submit" onclick="PutMember()">PUT(Change) Member</button>
+
+
+    <p>
+    <div>
+    <label for="name">Name (0 to 16 ch.):</label>
+    <input type="text" id="name" name="name" required
+           minlength="0" maxlength="16" size="20">
+    </div>
+
+    <div>
+    <label for="surname">Surname (0 to 16 ch.):</label>
+    <input type="text" id="surname" name="surname" required
+            minlength="0" maxlength="16" size="20">
+    </div>
+
+     <button type="submit" onclick="PostMember()">POST(Add) Member</button>
+    </p>
+
 </body>
 </html>
