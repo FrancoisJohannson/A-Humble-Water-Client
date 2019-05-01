@@ -60,12 +60,13 @@ async function PostMember() {
     let as = JSON.parse(r);
     let id = getMaxId(as)+1;
 
-    let name = document.getElementById("name").value;
-    let surname = document.getElementById("surname").value;
+    let hanzi = document.getElementById("hanzi").value;
+    let english = document.getElementById("english").value;
 
-    let sjson = '{"id":'+id+',"surname":"'+surname+'","name":"'+name+'"}';
+    let sjson = '{"id":'+id+',"surname":"'+english+'","name":"'+hanzi+'"}';
 
     request('POST',ContextRoot,sjson);
+    GetAllMembers();
 }
 
 // PUT is for changeing an element
@@ -76,6 +77,7 @@ function PutMember() {
 
 function DeleteMember(id) {
     request('DELETE',ContextRoot.concat("/").concat(id));
+    GetAllMembers();
 }
 
 async function GetAllMembers() {
