@@ -23,7 +23,7 @@ function request(verb,url,body) {
       }
       xhr.open(verb, url, true);
 
-      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       
       if (body ) {
         xhr.send(body);
@@ -60,7 +60,10 @@ async function PostMember() {
     let as = JSON.parse(r);
     let id = getMaxId(as)+1;
 
-    let sjson = '{"id":'+id+',"surname":"Gebühr","name":"Otto"}';
+    let name = document.getElementById("name").value;
+    let surname = document.getElementById("surname").value;
+
+    let sjson = '{"id":'+id+',"surname":"'+surname+'","name":"'+name+'"}';
 
     request('POST',ContextRoot,sjson);
 }
