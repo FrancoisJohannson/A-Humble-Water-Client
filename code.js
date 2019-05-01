@@ -69,8 +69,21 @@ async function PostOne() {
     GetAll();
 }
 
+async function CopyOne(id) {
+    let r = await request('GET',ContextRoot);
+    let as = JSON.parse(r);
+
+    for (let i = 0; i < as.length; i++) {
+        if ( as[i].id==id ) {
+            document.getElementById("hanzi").value = as[i].hanzi;
+            document.getElementById("english").value = as[i].english;
+        }
+    }
+
+}
+
 // PUT is for changeing an element
-function PutOne() {
+function PutOne(id) {
     let sjson = '{"id":1,"english":"Curie","hanzi":"Marie2"}';
     request('PUT',ContextRoot,sjson);
 }
@@ -101,11 +114,11 @@ async function GetAll() {
             row.appendChild(buttdel);
 
             let buttchg = document.createElement('button');
-            buttchg.innerHTML = "Change";
+            buttchg.innerHTML = "Copy";
             buttchg.style = "float: right;";
             buttchg.value = as[i].id;
             buttchg.addEventListener ("click", function() {
-                PutOne(this.value);
+                CopyOne(this.value);
             });
             row.appendChild(buttchg);
 
