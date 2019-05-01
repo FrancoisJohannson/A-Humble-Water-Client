@@ -1,6 +1,6 @@
 "use strict";
 
-const ContextRoot = "http://localhost:8080/members";
+const ContextRoot = "http://localhost:8080/chinesewords";
 
 
 function request(verb,url,body) {
