@@ -95,8 +95,8 @@ function PutOne() {
     request('PUT',ContextRoot,sjson);
 }
 
-function DeleteOne(id) {
-    request('DELETE',ContextRoot.concat("/").concat(id));
+async function DeleteOne(id) {
+    await request('DELETE',ContextRoot.concat("/").concat(id));
     GetAll();
 }
 
