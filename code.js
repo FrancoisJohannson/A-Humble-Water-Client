@@ -89,16 +89,26 @@ async function GetAll() {
         let row = document.createElement('p');
             row.classList.add("itemline");
             row.style.border = '1px solid lightblue';
-            row.innerText = as[i].id+" "+as[i].hanzi+" "+as[i].english;
+            row.innerText = as[i].hanzi+" "+as[i].english;
 
-            let butt = document.createElement('button');
-            butt.innerHTML = "Del";
-            butt.style = "float: right;";
-            butt.value = as[i].id;
-            butt.addEventListener ("click", function() {
-                DeleteMember(this.value);
+            let buttdel = document.createElement('button');
+            buttdel.innerHTML = "Del";
+            buttdel.style = "float: right;";
+            buttdel.value = as[i].id;
+            buttdel.addEventListener ("click", function() {
+                DeleteOne(this.value);
             });
-            row.appendChild(butt);
+            row.appendChild(buttdel);
+
+            let buttchg = document.createElement('button');
+            buttchg.innerHTML = "Change";
+            buttchg.style = "float: right;";
+            buttchg.value = as[i].id;
+            buttchg.addEventListener ("click", function() {
+                PutOne(this.value);
+            });
+            row.appendChild(buttchg);
+
 
             document.body.appendChild(row);
     }
