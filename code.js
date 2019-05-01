@@ -115,6 +115,7 @@ async function GetAll() {
             let buttdel = document.createElement('button');
             buttdel.innerHTML = "Del";
             buttdel.style = "float: right;";
+            buttdel.style.color='red';
             buttdel.value = as[i].id;
             buttdel.addEventListener ("click", function() {
                 DeleteOne(this.value);
