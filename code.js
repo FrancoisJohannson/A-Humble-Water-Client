@@ -63,7 +63,7 @@ async function PostMember() {
     let hanzi = document.getElementById("hanzi").value;
     let english = document.getElementById("english").value;
 
-    let sjson = '{"id":'+id+',"surname":"'+english+'","name":"'+hanzi+'"}';
+    let sjson = '{"id":'+id+',"english":"'+english+'","hanzi":"'+hanzi+'"}';
 
     request('POST',ContextRoot,sjson);
     GetAllMembers();
@@ -71,7 +71,7 @@ async function PostMember() {
 
 // PUT is for changeing an element
 function PutMember() {
-    let sjson = '{"id":1,"surname":"Curie","name":"Marie2"}';
+    let sjson = '{"id":1,"english":"Curie","hanzi":"Marie2"}';
     request('PUT',ContextRoot,sjson);
 }
 
@@ -89,7 +89,7 @@ async function GetAllMembers() {
         let row = document.createElement('p');
             row.classList.add("itemline");
             row.style.border = '1px solid lightblue';
-            row.innerText = as[i].id+" "+as[i].name+" "+as[i].surname;
+            row.innerText = as[i].id+" "+as[i].hanzi+" "+as[i].english;
 
             let butt = document.createElement('button');
             butt.innerHTML = "Del";
