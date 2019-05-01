@@ -11,7 +11,7 @@ function request(verb,url,body) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             resolve(xhr.responseText);
-            document.getElementById("p1").innerHTML = "status:"+xhr.status+" ,response="+xhr.responseText;
+            document.getElementById("p1").innerHTML = "status:"+xhr.status; //+" ,response="+xhr.responseText;
           } else {
             reject(xhr.status);
             document.getElementById("p1").innerHTML = "status:"+xhr.status+" ,response="+xhr.responseText;
@@ -85,14 +85,15 @@ async function CopyOne(id) {
 }
 
 // PUT is for changeing an element
-function PutOne() {
+async function PutOne() {
     let id = tmpid;
     let hanzi = document.getElementById("hanzi").value;
     let english = document.getElementById("english").value;
 
     let sjson = '{"id":'+id+',"english":"'+english+'","hanzi":"'+hanzi+'"}';
 
-    request('PUT',ContextRoot,sjson);
+    await request('PUT',ContextRoot,sjson);
+    GetAll();
 }
 
 async function DeleteOne(id) {
