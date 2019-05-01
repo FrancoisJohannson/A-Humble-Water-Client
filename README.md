@@ -1,2 +1,2 @@
-# A Humble 水 Client
-A Humble 水 Client written in Javascript using UTF-8 to save and display Hanzi Characters
+# 水 Client
+A Humble Rest Client written in Javascript using UTF-8 to save and display Hanzi Characters
