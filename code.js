@@ -66,7 +66,7 @@ async function PostOne() {
 
     let sjson = '{"id":'+id+',"english":"'+english+'","hanzi":"'+hanzi+'"}';
 
-    request('POST',ContextRoot,sjson);
+    await request('POST',ContextRoot,sjson);
     GetAll();
 }
 
