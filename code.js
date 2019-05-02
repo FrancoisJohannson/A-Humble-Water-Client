@@ -61,10 +61,10 @@ async function PostOne() {
     let as = JSON.parse(r);
     let id = getMaxId(as)+1;
 
-    let hanzi = document.getElementById("hanzi").value;
-    let english = document.getElementById("english").value;
+    let orig = document.getElementById("orig").value;
+    let means = document.getElementById("means").value;
 
-    let sjson = '{"id":'+id+',"english":"'+english+'","hanzi":"'+hanzi+'"}';
+    let sjson = '{"id":'+id+',"means":"'+means+'","orig":"'+orig+'"}';
 
     await request('POST',ContextRoot,sjson);
     GetAll();
@@ -76,8 +76,8 @@ async function CopyOne(id) {
 
     for (let i = 0; i < as.length; i++) {
         if ( as[i].id==id ) {
-            document.getElementById("hanzi").value = as[i].hanzi;
-            document.getElementById("english").value = as[i].english;
+            document.getElementById("orig").value = as[i].orig;
+            document.getElementById("means").value = as[i].english;
             tmpid = id;
         }
     }
@@ -87,10 +87,10 @@ async function CopyOne(id) {
 // PUT is for changeing an element
 async function PutOne() {
     let id = tmpid;
-    let hanzi = document.getElementById("hanzi").value;
-    let english = document.getElementById("english").value;
+    let orig = document.getElementById("orig").value;
+    let means = document.getElementById("means").value;
 
-    let sjson = '{"id":'+id+',"english":"'+english+'","hanzi":"'+hanzi+'"}';
+    let sjson = '{"id":'+id+',"means":"'+means+'","orig":"'+orig+'"}';
 
     await request('PUT',ContextRoot,sjson);
     GetAll();
@@ -110,7 +110,7 @@ async function GetAll() {
         let row = document.createElement('p');
             row.classList.add("itemline");
             row.style.border = '1px solid lightblue';
-            row.innerText = as[i].hanzi+" "+as[i].english;
+            row.innerText = as[i].orig+" "+as[i].means;
 
             let buttdel = document.createElement('button');
             buttdel.innerHTML = "Del";
